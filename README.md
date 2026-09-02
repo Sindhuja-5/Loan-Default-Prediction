@@ -8,7 +8,7 @@ The project implements a complete tabular machine learning pipeline including da
 
 Loan default prediction is a binary classification problem where the objective is to determine whether a borrower/loan is likely to belong to the positive loan-status class.
 
-This project uses **XGBoost Classifier** to learn patterns from historical loan data and generate a probability score for each loan.
+This project uses **XGBoost Classifier** to learn patterns from historical loan data and generate a probability score for each loan. The model is evaluated using **ROC-AUC**, achieving a score of **0.9403** on the held-out test set.
 
 ### Pipeline
 
@@ -83,11 +83,31 @@ The model is evaluated using **ROC-AUC (Receiver Operating Characteristic – Ar
 
 ### Result
 
-**ROC-AUC: 0.9673**
+**ROC-AUC: 0.9403**
 
 A ROC-AUC value close to 1 indicates strong discrimination between the two classes.
 
-> Note: The reported ROC-AUC represents performance on the dataset used for evaluation. It should not be interpreted as classification accuracy or as unseen test performance unless the evaluation data was kept separate from the model's training data.
+## Results & Visualizations
+
+### Loan Status Distribution
+
+Shows the distribution of the target variable (`loan_status`) and helps identify class imbalance in the dataset.
+
+![Loan Status Distribution](results/class_distribution.png)
+
+### Top 15 Feature Importances
+
+Shows the 15 features that contributed most to the XGBoost model's predictions.
+
+![Feature Importance](results/feature_importance.png)
+
+### ROC Curve
+
+The ROC curve evaluates the model's ability to distinguish between the two loan-status classes.
+
+**ROC-AUC: 0.9403**
+
+![ROC Curve](results/roc_curve.png)
 
 ## Project Structure
 
@@ -95,15 +115,23 @@ A ROC-AUC value close to 1 indicates strong discrimination between the two class
 loan-default-prediction/
 │
 ├── data/
-│   └── sample_input.csv
-│
+│   ├── train.csv
+│   └── test.csv
 ├── model/
 │   └── final.model
 │
-├── loan_prediction.py
-├── requirements.txt
-├── README.md
-└── .gitignore
+├── results/
+│   ├── class_distribution.png
+│   ├── feature_importance.png
+│   └── roc_curve.png
+│
+├── src/
+│   ├── preprocess.py       # Data cleaning and feature engineering
+│   ├── train.py            # Model training, evaluation, plots, and saving
+│   └── predict.py          # Loading the trained model and making predictions
+│
+├── requirements.txt        # Python dependencies
+├── README.md               # Project documentation
 ```
 
 ## Usage
@@ -122,11 +150,9 @@ The script preprocesses the input data, loads the trained XGBoost model, generat
 
 * Python
 * Pandas
-* NumPy
 * Scikit-learn
 * XGBoost
 * Matplotlib
-* Seaborn
 
 ## Future Improvements
 
@@ -139,4 +165,3 @@ The script preprocesses the input data, loads the trained XGBoost model, generat
 * Build an interactive interface for loan-risk prediction
 * Add model explainability using SHAP
 * Deploy the model as an API or web application
-This project is intended for educational and demonstration purposes. Predictions from the model should not be used as the sole basis for real-world lending or financial decisions.
