@@ -6,9 +6,9 @@ The project implements a complete tabular machine learning pipeline including da
 
 ## Overview
 
-Loan default prediction is a binary classification problem where the objective is to determine whether a borrower/loan is likely to belong to the positive loan-status class.
+Loan default prediction is a binary classification problem that aims to predict whether a borrower is likely to default on a loan based on borrower and loan-related characteristics.
 
-This project uses **XGBoost Classifier** to learn patterns from historical loan data and generate a probability score for each loan. The model is evaluated using **ROC-AUC**, achieving a score of **0.9403** on the held-out test set.
+This project uses an **XGBoost Classifier** to learn patterns from historical loan data and generate a probability of default for each loan. The model is evaluated on a held-out test set using **ROC-AUC**, achieving a score of **0.9403**, indicating strong ability to distinguish between loans that default and those that do not.
 
 ### Pipeline
 
